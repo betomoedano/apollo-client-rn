@@ -33,12 +33,6 @@ export default function Add() {
         onCompleted: (data) => {console.log(data)},
     });
 
-    function handlePublish() {
-        console.log(title);
-        console.log(description);
-        console.log(image);
-        console.log(author);
-    }
 
     return (
         <SafeAreaView style={styles.container}>

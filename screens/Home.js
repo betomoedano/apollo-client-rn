@@ -1,7 +1,7 @@
 import * as React from 'react';
 import List from "../components/List";
 import { useNavigation } from "@react-navigation/native";
-import { Button } from 'react-native';
+import { Button, ScrollView } from 'react-native';
 
 const Home = () => {
 
@@ -9,8 +9,15 @@ const Home = () => {
     
     return (
         <React.Fragment>
-            <List />
-            <Button title="Add" onPress={() => navigation.navigate("Add")} />
+            <ScrollView 
+                contentContainerStyle={{
+                    paddingVertical: 30,
+                    alignItems: 'center',
+                }} 
+            >
+                <List />
+                <Button title="Add" onPress={() => navigation.navigate("Add")} />
+            </ScrollView>
         </React.Fragment>
     );
 }
