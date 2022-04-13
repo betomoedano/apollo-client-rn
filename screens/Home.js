@@ -13,6 +13,7 @@ const Home = () => {
                 contentContainerStyle={{
                     paddingVertical: 30,
                     alignItems: 'center',
+                    backgroundColor: '#fff'
                 }} 
             >
                 <List />

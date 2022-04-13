@@ -1,14 +1,36 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { useMutation, gql } from '@apollo/client';
+
+const LIKE_POST = gql`
+    mutation LikePost($likePostId: Int!) {
+        likePost(id: $likePostId)
+    }
+`;
 
 export default function Card({
+    id,
     title,
     description,
     image,
     author,
     createdAt,
+    refetch,
     likes,
 }) {
+    console.log(id)
+    const [likePost] = useMutation(LIKE_POST, {
+        variables: {
+            likePostId: id
+        },
+        onCompleted: (data) => {console.log(data)},
+    });
+
+    const handleLike = () => {
+        likePost();
+        refetch();
+    }
+
   return (
       <View style={styles.cardContainer}>
         <Image
@@ -18,7 +40,7 @@ export default function Card({
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
         <Text style={styles.description}>likes: {likes} 👍</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={handleLike} style={styles.button}>
           <Text style={{ color: 'white', fontWeight: 'bold' }}>Like</Text>
         </TouchableOpacity>
       </View>
