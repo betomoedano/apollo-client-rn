@@ -1,41 +1,34 @@
-import { SafeAreaView, StyleSheet} from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql, useQuery } from '@apollo/client';
-import List from './List';
+import List from './components/List';
+import Add from './screens/Add';
+import Home from './screens/Home';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
   cache: new InMemoryCache()
 });
 
-// client.query({
-//   query: gql`
-//     query myQuery {
-//       books {
-//         title
-//       }
-//     }
-//   `
-// }).then(res => console.log(res))
+const Stack = createNativeStackNavigator();
 
-const App = () => {
-
+function MyStack() {
   return (
-    <SafeAreaView>
-      <ApolloProvider client={client}>
-        <List />
-      </ApolloProvider>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Add" component={Add} options={{presentation: 'modal'}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-// AppRegistry.registerComponent('my app', () => App)
-export default App;
+const App = () => {
+  return (
+      <ApolloProvider client={client}>
+          <MyStack />
+      </ApolloProvider>
+  );
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
