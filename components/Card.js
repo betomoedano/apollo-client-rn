@@ -26,10 +26,10 @@ export default function Card({
         onCompleted: (data) => {console.log(data)},
     });
 
-    const handleLike = () => {
-        likePost();
-        refetch();
-    }
+    // const handleLike = () => {
+    //     likePost();
+    //     refetch();
+    // }
 
   return (
       <View style={styles.cardContainer}>
@@ -39,10 +39,14 @@ export default function Card({
         />
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
-        <Text style={styles.description}>likes: {likes} 👍</Text>
-        <TouchableOpacity onPress={handleLike} style={styles.button}>
-          <Text style={{ color: 'white', fontWeight: 'bold' }}>Like</Text>
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+          <View style={[styles.button, {backgroundColor: '#FFEB81'}]}>
+            <Text style={{fontWeight: '900', color: 'gray', fontSize: 18}}>{likes} likes</Text>
+          </View>
+          <TouchableOpacity onPress={likePost} style={styles.button}>
+            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 18 }}>👍 </Text>
+          </TouchableOpacity>
+        </View>
       </View>
   );
 }
@@ -50,7 +54,7 @@ export default function Card({
 const styles = StyleSheet.create({
 
   cardContainer: {
-    width: '80%',
+    width: '90%',
     backgroundColor: '#fff',
     borderRadius: 16,
     padding: 16,
@@ -75,10 +79,10 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   button: {
-    backgroundColor: '#000',
-    width: '100%',
+    backgroundColor: '#CDC5FF',
+    width: '45%',
     height: 35,
-    borderRadius: 6,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,

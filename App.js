@@ -17,7 +17,7 @@ function MyStack() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Add" component={Add} options={{presentation: 'modal'}}/>
+        <Stack.Screen name="Add" component={Add} options={{presentation: 'modal', title: 'Create Post'}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

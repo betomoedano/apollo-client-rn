@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SafeAreaView, Text, Button, View, TextInput, StyleSheet} from 'react-native';
+import { SafeAreaView, Text, Button, View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import { gql, useMutation } from '@apollo/client';
 
 const CREATE_POST = gql`
@@ -36,6 +36,7 @@ export default function Add() {
 
     return (
         <SafeAreaView style={styles.container}>
+            <Text style={{fontSize: 26, marginVertical: 20, fontWeight: '900', color: '#00000090'}}>Share something with the community</Text>
             <View style={styles.inputContainer}>
                 <TextInput 
                     onChangeText={setTitle} 
@@ -57,7 +58,9 @@ export default function Add() {
                     value={image}
                     placeholder="Image uri" style={styles.textInput} />
             </View>
-            <Button title="Publish" onPress={createPost}/>
+            <TouchableOpacity onPress={createPost} style={styles.button}>
+                <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00000090'}}>Publish</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 }
@@ -85,4 +88,13 @@ const styles = StyleSheet.create({
       fontSize: 16,
       color: '#00000090',
     },
+    button: {
+        borderRadius: 20,
+        height: 50,
+        width: '90%',
+        backgroundColor: '#FFBBC2',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+    }
   });

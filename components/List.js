@@ -6,9 +6,9 @@ import Card from './Card';
 
 const List = () => {
 
-    const { loading, error, data, refetch } = useQuery(AUTHOR_NAMES);
+    // const { loading, error, data, refetch } = useQuery(AUTHOR_NAMES);
     // reFetching data every second
-    // const { loading, error, data, refetch } = useQuery(AUTHOR_NAMES, {pollInterval: 1000});
+    const { loading, error, data} = useQuery(AUTHOR_NAMES, {pollInterval: 1000});
 
     if(loading) return <Text>Loading</Text>
     if(error) return <Text>Something is wrong with the server</Text>
@@ -18,11 +18,12 @@ const List = () => {
                 contentContainerStyle={{
                     paddingVertical: 30,
                     alignItems: 'center',
-                    backgroundColor: 'papayawhip'
+                    backgroundColor: '#FAF5F0'
                     // backgroundColor: 'papayawhip'
                 }} 
             >
-                {    data.posts.map(post => ( <Card key={post.id}  {...post} refetch={refetch} />))
+                 <Text style={{fontSize: 26, fontWeight: '900', color: '#00000090'}}>This are the News</Text>
+                {    data.posts.map(post => ( <Card key={post.id}  {...post} />))
 }
             </ScrollView>
         </React.Fragment>
