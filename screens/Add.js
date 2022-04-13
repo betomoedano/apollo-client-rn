@@ -20,7 +20,7 @@ export default function Add() {
 
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
-    const [image, setImage] = React.useState('');
+    const [image, setImage] = React.useState('https://images.unsplash.com/photo-1592182383627-0483b246e5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80');
     const [author, setAuthor] = React.useState('');
 
     const [createPost] = useMutation(CREATE_POST, {
@@ -54,6 +54,7 @@ export default function Add() {
             <View style={styles.inputContainer}>
                 <TextInput 
                     onChangeText={setImage}
+                    value={image}
                     placeholder="Image uri" style={styles.textInput} />
             </View>
             <Button title="Publish" onPress={createPost}/>
@@ -64,7 +65,7 @@ export default function Add() {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#FAF5F0',
       alignItems: 'center',
     },
     inputContainer: {
@@ -73,13 +74,15 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       marginTop: 20,
       paddingHorizontal: 10,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 6,
+      borderRadius: 10,
+      backgroundColor: '#ECE6E0',
     },
     textInput: {
       paddingLeft: 10,
       flex: 1,
       height: 50,
+      fontWeight: 'bold',
+      fontSize: 16,
+      color: '#00000090',
     },
   });
