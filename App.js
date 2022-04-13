@@ -1,14 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet} from 'react-native';
+import { ApolloClient, InMemoryCache, ApolloProvider, gql, useQuery } from '@apollo/client';
+import List from './List';
 
-export default function App() {
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+  cache: new InMemoryCache()
+});
+
+// client.query({
+//   query: gql`
+//     query myQuery {
+//       books {
+//         title
+//       }
+//     }
+//   `
+// }).then(res => console.log(res))
+
+const App = () => {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      <ApolloProvider client={client}>
+        <List />
+      </ApolloProvider>
+    </SafeAreaView>
   );
 }
+
+// AppRegistry.registerComponent('my app', () => App)
+export default App;
 
 const styles = StyleSheet.create({
   container: {
